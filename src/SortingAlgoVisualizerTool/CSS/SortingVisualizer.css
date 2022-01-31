@@ -1,0 +1,10 @@
+#visualizer {
+  width: 100%;
+  height: max-content;
+  background-color: #f2f2f2;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
