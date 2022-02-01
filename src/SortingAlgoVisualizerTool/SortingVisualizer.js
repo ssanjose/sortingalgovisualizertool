@@ -24,7 +24,7 @@ const animateArray = (array, algorithm, config) => {
 export const SortingVisualizer = (props) => {
   const [array, setArray] = useState([]);
   const [sorting, setSorting] = useState(false);
-  const [arrayNum, setArrayNum] = useState(200);
+  const [arrayNum, setArrayNum] = useState(20);
 
   // Config data
   const [configData, setConfigData] = useState({
@@ -65,6 +65,9 @@ export const SortingVisualizer = (props) => {
           <button className="merge-sort" onClick={
             () => { animateArray(array, "mergeSort", configData); }
           }>Merge Sort</button>
+          <button className="bubble-sort" onClick={
+            () => { animateArray(array, "bubbleSort", configData); }
+          }>Bubble Sort</button>
         </div>
 
       </main>
