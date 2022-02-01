@@ -1,65 +1,73 @@
 import React, { useEffect, useState } from 'react';
+import { animationHandler } from './Animations/animationHandler';
 import './CSS/SortingVisualizer.css';
 import { OptionBar } from './OptionBar';
 
-function RandomIntFromInterval(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
+const randomIntFromInterval = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 // Reset array data in SortingVisualizer to default.
-function ResetArray(arrayLength) {
-    const arr = [];
-    for (let i = 0; i < arrayLength; i++) {
-        arr.push(RandomIntFromInterval(5, 800));
-    }
-    return arr;
+const resetArray = (arrayLength) => {
+  const arr = [];
+  for (let i = 0; i < arrayLength; i++) {
+    arr.push(randomIntFromInterval(5, 800));
+  }
+  return arr;
+}
+
+// Animates the array by calling the animationHandler
+const animateArray = (array, algorithm, config) => {
+  animationHandler(array, algorithm, config);
 }
 
 export const SortingVisualizer = (props) => {
-    const [array, setArray] = useState([]);
-    const [sorted, setSorted] = useState(false);
-    const [arrayNum, setArrayNum] = useState(400);
-    const [dimensions, setDimensions] = useState({
-        height: window.innerHeight,
-        width: window.innerWidth
-    });
+  const [array, setArray] = useState([]);
+  const [sorting, setSorting] = useState(false);
+  const [arrayNum, setArrayNum] = useState(200);
 
-    useEffect(() => {
-        setArray(ResetArray(arrayNum));
+  // Config data
+  const [configData, setConfigData] = useState({
+    primaryColor: 'turquoise',
+    secondaryColor: 'red',
+    animationSpeed: 5
+  });
 
-        const HandleResize = () => {
-            setDimensions({
-                height: window.innerHeight,
-                width: window.innerWidth
-            });
-        };
+  const [dimensions, setDimensions] = useState({
+    height: window.innerHeight,
+    width: window.innerWidth
+  });
 
-        window.addEventListener('resize', HandleResize);
-        return () => {
-            window.removeEventListener('resize', HandleResize);
-        };
-    }, [arrayNum]);
+  useEffect(() => {
+    setArray(resetArray(arrayNum));
+  }, [arrayNum]);
 
-    return (
-        <>
-            <OptionBar />
-            <main>
-                <div id="visualizer">
-                    {array.map((value, index) => (
-                        <div className='array-bar' key={index}
-                            style={{
-                                height: `${value}px`,
-                                backgroundColor: 'turquoise',
-                                width: `${Math.floor(window.innerWidth / arrayNum)}px`,
-                                display: 'inline-block'
-                            }}>
-                        </div>
-                    ))}
-                </div>
-                <button className="array-reset" onClick={
-                    () => { setArray(ResetArray(arrayNum)); }
-                }>Generate New Dataset</button>
-            </main>
-        </>
-    )
+  return (
+    <>
+      <OptionBar />
+      <main id="main-content">
+        <div id="visualizer">
+          {array.map((value, index) => (
+            <div className='array-bar' key={index}
+              style={{
+                height: `${value}px`,
+                backgroundColor: 'turquoise',
+                width: `${Math.floor(window.innerWidth / arrayNum)}px`,
+                display: 'inline-block'
+              }}>
+            </div>
+          ))}
+        </div>
+        <div className='button'>
+          <button className="array-reset" onClick={
+            () => { setArray(resetArray(arrayNum)); }
+          }>Generate New Dataset</button>
+          <button className="merge-sort" onClick={
+            () => { animateArray(array, "mergeSort", configData); }
+          }>Merge Sort</button>
+        </div>
+
+      </main>
+    </>
+  )
 }
