@@ -1,3 +1,4 @@
+//  ---------- Merge Sort ----------
 //  Sorts the array using the merge sort algorithm and returns the animations array.
 export const mergeSortAnimation = (array) => {
   const animations = [];
@@ -12,10 +13,10 @@ const mergeSorter = (mainArray, startIdx, endIdx, auxiliaryArray, animations) =>
   const middleIdx = Math.floor((startIdx + endIdx) / 2);
   mergeSorter(auxiliaryArray, startIdx, middleIdx, mainArray, animations);
   mergeSorter(auxiliaryArray, middleIdx + 1, endIdx, mainArray, animations);
-  createAnimation(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, animations);
+  createMergeSortAnimation(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, animations);
 }
 
-const createAnimation = (mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, animations) => {
+const createMergeSortAnimation = (mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, animations) => {
   let k = startIdx;
   let i = startIdx;
   let j = middleIdx + 1;
@@ -42,4 +43,45 @@ const createAnimation = (mainArray, startIdx, middleIdx, endIdx, auxiliaryArray,
     animations.push([k, auxiliaryArray[j]]);
     mainArray[k++] = auxiliaryArray[j++];
   }
+}
+
+//  ---------- Bubble Sort ----------
+//  Sorts the array using the bubble sort algorithm and returns the animations array.
+export const bubbleSortAnimation = (array) => {
+  const animations = [];
+  if (array.length <= 1) return array;
+  const auxiliaryArray = array.slice();
+  bubbleSorter(array, 0, array.length - 1, auxiliaryArray, animations);
+  return animations;
+}
+
+// Bubble sort algorithm
+const bubbleSorter = (mainArray, startIdx, endIdx, auxiliaryArray, animations) => {
+  if (startIdx === endIdx) return;
+  let swapped;
+
+  do {
+    swapped = false;
+    for (let i = startIdx; i < endIdx; i++) {
+      animations.push([i, i + 1]);
+      animations.push([i, i + 1]);
+      if (auxiliaryArray[i] > auxiliaryArray[i + 1]) {
+        animations.push([i, auxiliaryArray[i + 1]]);
+        animations.push([i + 1, auxiliaryArray[i]]);
+        swap(mainArray, i, i + 1);
+        swap(auxiliaryArray, i, i + 1);
+        swapped = true;
+      }
+      else {
+        animations.push([i, auxiliaryArray[i]]);
+        animations.push([i + 1, auxiliaryArray[i + 1]]);
+      }
+    }
+  } while (swapped);
+}
+
+const swap = (array, i, j) => {
+  const temp = array[i];
+  array[i] = array[j];
+  array[j] = temp;
 }
