@@ -68,6 +68,9 @@ export const SortingVisualizer = (props) => {
           <button className="bubble-sort" onClick={
             () => { animateArray(array, "bubbleSort", configData); }
           }>Bubble Sort</button>
+          <button className="insertion-sort" onClick={
+            () => { animateArray(array, "insertionSort", configData); }
+          }>Insertion Sort</button>
         </div>
 
       </main>
