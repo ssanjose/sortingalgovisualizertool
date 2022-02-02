@@ -1,4 +1,5 @@
 import { bubbleSortAnimation, insertionSortAnimation, mergeSortAnimation } from "../Algorithms/sortingAlgorithm";
+import { setColorChange, setHeightChange } from "../helperMethods";
 
 //  Animation function to handle animations in the sorting algorithm visualization tool.
 export const animationHandler = (array, algorithm, config) => {
@@ -97,19 +98,4 @@ const insertionSort = (array, config) => {
       setHeightChange(barTwoStyle, newHeight, i, config);
     }
   }
-}
-
-// Takes the both bar styles, color, index and config and sets a timeout to change the bar style.
-const setColorChange = (barOneStyle, barTwoStyle, color, index, config) => {
-  setTimeout(() => {
-    barOneStyle.backgroundColor = color;
-    barTwoStyle.backgroundColor = color;
-  }, index * config.animationSpeed);
-}
-
-// Takes a bar style, height, index and config and sets a timeout to change the bar height.
-const setHeightChange = (barStyle, height, index, config) => {
-  setTimeout(() => {
-    barStyle.height = `${height}px`;
-  }, index * config.animationSpeed);
 }

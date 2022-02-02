@@ -1,3 +1,5 @@
+import { swap } from "../helperMethods";
+
 //  ---------- Merge Sort ----------
 //  Sorts the array using the merge sort algorithm and returns the animations array.
 export const mergeSortAnimation = (array) => {
@@ -78,12 +80,6 @@ const bubbleSorter = (mainArray, startIdx, endIdx, auxiliaryArray, animations) =
       animations.push([i, i + 1]);
     }
   } while (swapped);
-}
-
-const swap = (array, i, j) => {
-  const temp = array[i];
-  array[i] = array[j];
-  array[j] = temp;
 }
 
 //  ---------- Insertion Sort ----------
