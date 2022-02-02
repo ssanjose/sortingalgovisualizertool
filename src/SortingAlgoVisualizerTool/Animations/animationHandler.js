@@ -1,4 +1,4 @@
-import { bubbleSortAnimation, mergeSortAnimation } from "../Algorithms/sortingAlgorithm";
+import { bubbleSortAnimation, insertionSortAnimation, mergeSortAnimation } from "../Algorithms/sortingAlgorithm";
 
 //  Animation function to handle animations in the sorting algorithm visualization tool.
 export const animationHandler = (array, algorithm, config) => {
@@ -8,7 +8,7 @@ export const animationHandler = (array, algorithm, config) => {
       bubbleSort(array, config);
       break;
     case 'insertionSort':
-      // insertionSort(array, animations);
+      insertionSort(array, config);
       break;
     case 'selectionSort':
       // selectionSort(array, animations);
@@ -51,11 +51,38 @@ const bubbleSort = (array, config) => {
   const arrayBars = document.getElementsByClassName('array-bar');
 
   for (let i = 0; i < animations.length; i++) {
+    if (i % 4 === 0 || i % 4 === 3) {
+      let [barOneIdx, barTwoIdx] = animations[i];
+      let barOneStyle = arrayBars[barOneIdx].style;
+      let barTwoStyle = arrayBars[barTwoIdx].style;
+      let color = i % 2 === 0 ? config.secondaryColor : config.primaryColor;
+
+      setColorChange(barOneStyle, barTwoStyle, color, i, config);
+    } else if (i % 4 === 1) {
+      let [barOneIdx, newHeight] = animations[i];
+      let barOneStyle = arrayBars[barOneIdx].style;
+
+      setHeightChange(barOneStyle, newHeight, i, config);
+    } else if (i % 4 === 2) {
+      let [barTwoIdx, newHeight] = animations[i];
+      let barTwoStyle = arrayBars[barTwoIdx].style;
+
+      setHeightChange(barTwoStyle, newHeight, i, config);
+    }
+  }
+}
+
+//  Insertion sort function to call the insertion sort animation function and handle animation.
+const insertionSort = (array, config) => {
+  const animations = insertionSortAnimation(array);
+  const arrayBars = document.getElementsByClassName('array-bar');
+
+  for (let i = 0; i < animations.length; i++) {
     if (i % 4 === 0 || i % 4 === 1) {
       let [barOneIdx, barTwoIdx] = animations[i];
       let barOneStyle = arrayBars[barOneIdx].style;
       let barTwoStyle = arrayBars[barTwoIdx].style;
-      let color = i % 2 !== 1 ? config.secondaryColor : config.primaryColor;
+      let color = i % 2 === 0 ? config.secondaryColor : config.primaryColor;
 
       setColorChange(barOneStyle, barTwoStyle, color, i, config);
     } else if (i % 4 === 2) {
@@ -70,7 +97,6 @@ const bubbleSort = (array, config) => {
       setHeightChange(barTwoStyle, newHeight, i, config);
     }
   }
-
 }
 
 // Takes the both bar styles, color, index and config and sets a timeout to change the bar style.
