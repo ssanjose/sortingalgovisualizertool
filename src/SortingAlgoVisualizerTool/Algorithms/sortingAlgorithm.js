@@ -64,7 +64,6 @@ const bubbleSorter = (mainArray, startIdx, endIdx, auxiliaryArray, animations) =
     swapped = false;
     for (let i = startIdx; i < endIdx; i++) {
       animations.push([i, i + 1]);
-      animations.push([i, i + 1]);
       if (auxiliaryArray[i] > auxiliaryArray[i + 1]) {
         animations.push([i, auxiliaryArray[i + 1]]);
         animations.push([i + 1, auxiliaryArray[i]]);
@@ -76,6 +75,7 @@ const bubbleSorter = (mainArray, startIdx, endIdx, auxiliaryArray, animations) =
         animations.push([i, auxiliaryArray[i]]);
         animations.push([i + 1, auxiliaryArray[i + 1]]);
       }
+      animations.push([i, i + 1]);
     }
   } while (swapped);
 }
@@ -84,4 +84,30 @@ const swap = (array, i, j) => {
   const temp = array[i];
   array[i] = array[j];
   array[j] = temp;
+}
+
+//  ---------- Insertion Sort ----------
+//  Sorts the array using the insertion sort algorithm and returns the animations array.
+export const insertionSortAnimation = (array) => {
+  const animations = [];
+  if (array.length <= 1) return array;
+  const auxiliaryArray = array.slice();
+  insertionSorter(array, 0, array.length - 1, auxiliaryArray, animations);
+  return animations;
+}
+
+// Insertion sort algorithm
+const insertionSorter = (mainArray, startIdx, endIdx, auxiliaryArray, animations) => {
+  for (let i = startIdx + 1; i <= endIdx; i++) {
+    let j = i;
+    while (j > startIdx && auxiliaryArray[j] < auxiliaryArray[j - 1]) {
+      animations.push([j, j - 1]);
+      animations.push([j, j - 1]);
+      animations.push([j, auxiliaryArray[j - 1]]);
+      animations.push([j - 1, auxiliaryArray[j]]);
+      swap(mainArray, j, j - 1);
+      swap(auxiliaryArray, j, j - 1);
+      j--;
+    }
+  }
 }
