@@ -109,13 +109,11 @@ const selectionSort = (array, config) => {
     if (i % 3 === 0) {
       let [barBoundIdx, selectionArrayIdxs] = animations[i];
 
-      setColorChangeV2(arrayBars, [[barBoundIdx, config.boundColor]], config.animationSpeed);
-      setColorChangeV2(arrayBars, selectionArrayIdxs.map(idx => [idx, config.secondaryColor]), config.animationSpeed);
+      setColorChangeV2(arrayBars, [[barBoundIdx, config.boundColor]].concat(selectionArrayIdxs.map(idx => [idx, config.secondaryColor])), config.animationSpeed);
     } else if (i % 3 === 1) {
       let [barBoundIdx, selectionArrayIdxs] = animations[i];
 
-      setColorChangeV2(arrayBars, [[barBoundIdx, config.primaryColor]], config.animationSpeed);
-      setColorChangeV2(arrayBars, selectionArrayIdxs.map(idx => [idx, config.primaryColor]), config.animationSpeed);
+      setColorChangeV2(arrayBars, [[barBoundIdx, config.primaryColor]].concat(selectionArrayIdxs.map(idx => [idx, config.primaryColor])), config.animationSpeed);
     } else {
       if (animations[i][0] == "swap") {
         let [_, barOne, barTwo] = animations[i];
