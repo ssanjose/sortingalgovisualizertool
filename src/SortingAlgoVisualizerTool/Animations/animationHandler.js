@@ -1,5 +1,5 @@
 import { bubbleSortAnimation, insertionSortAnimation, mergeSortAnimation, selectionSortAnimation } from "../Algorithms/sortingAlgorithm";
-import { setArrayColorChange, setColorChange, setColorChangeV2, setHeightChange, setHeightChangeV2, setSingleColorChange } from "../helperMethods";
+import { setColorChange, setColorChangeV2, setHeightChange, setHeightChangeV2 } from "../helperMethods";
 
 //  Animation function to handle animations in the sorting algorithm visualization tool.
 export const animationHandler = (array, algorithm, config) => {
@@ -81,21 +81,17 @@ const insertionSort = (array, config) => {
   for (let i = 0; i < animations.length; i++) {
     if (i % 4 === 0 || i % 4 === 1) {
       let [barOneIdx, barTwoIdx] = animations[i];
-      let barOneStyle = arrayBars[barOneIdx].style;
-      let barTwoStyle = arrayBars[barTwoIdx].style;
       let color = i % 2 === 0 ? config.secondaryColor : config.primaryColor;
 
-      setColorChange(barOneStyle, barTwoStyle, color, i, config);
+      setColorChangeV2(arrayBars, [[barOneIdx, color], [barTwoIdx, color]], config.animationSpeed, i);
     } else if (i % 4 === 2) {
       let [barOneIdx, newHeight] = animations[i];
-      let barOneStyle = arrayBars[barOneIdx].style;
 
-      setHeightChange(barOneStyle, newHeight, i, config);
+      setHeightChangeV2(arrayBars, [[barOneIdx, newHeight]], config.animationSpeed, i);
     } else if (i % 4 === 3) {
       let [barTwoIdx, newHeight] = animations[i];
-      let barTwoStyle = arrayBars[barTwoIdx].style;
 
-      setHeightChange(barTwoStyle, newHeight, i, config);
+      setHeightChangeV2(arrayBars, [[barTwoIdx, newHeight]], config.animationSpeed, i);
     }
   }
 }
@@ -109,15 +105,15 @@ const selectionSort = (array, config) => {
     if (i % 3 === 0) {
       let [barBoundIdx, selectionArrayIdxs] = animations[i];
 
-      setColorChangeV2(arrayBars, [[barBoundIdx, config.boundColor]].concat(selectionArrayIdxs.map(idx => [idx, config.secondaryColor])), config.animationSpeed);
+      setColorChangeV2(arrayBars, [[barBoundIdx, config.boundColor]].concat(selectionArrayIdxs.map(idx => [idx, config.secondaryColor])), config.animationSpeed, i);
     } else if (i % 3 === 1) {
       let [barBoundIdx, selectionArrayIdxs] = animations[i];
 
-      setColorChangeV2(arrayBars, [[barBoundIdx, config.primaryColor]].concat(selectionArrayIdxs.map(idx => [idx, config.primaryColor])), config.animationSpeed);
+      setColorChangeV2(arrayBars, [[barBoundIdx, config.primaryColor]].concat(selectionArrayIdxs.map(idx => [idx, config.primaryColor])), config.animationSpeed, i);
     } else {
       if (animations[i][0] == "swap") {
         let [_, barOne, barTwo] = animations[i];
-        setHeightChangeV2(arrayBars, [barOne, barTwo], config.animationSpeed);
+        setHeightChangeV2(arrayBars, [barOne, barTwo], config.animationSpeed, i);
       }
     }
   }
