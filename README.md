@@ -7,8 +7,12 @@ I created this project to challenge myself with visualization techniques and sor
 ## Algorithms include
 
 - Merge Sort
-- ... soon
-
+- Bubble Sort
+- Insertion Sort
+- Selection Sort
+- Quick Sort
+- Radix Sort
+- ... more soon
 ## Scripts
 ### `npm start`
 
