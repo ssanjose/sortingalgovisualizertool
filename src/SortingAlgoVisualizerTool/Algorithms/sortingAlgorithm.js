@@ -107,3 +107,43 @@ const insertionSorter = (mainArray, startIdx, endIdx, auxiliaryArray, animations
     }
   }
 }
+
+//  ---------- Selection Sort ----------
+//  Sorts the array using the selection sort algorithm and returns the animations array.
+export const selectionSortAnimation = (array) => {
+  const animations = [];
+  if (array.length <= 1) return array;
+  const auxiliaryArray = array.slice();
+  selectionSorter(array, 0, array.length - 1, auxiliaryArray, animations);
+  return animations;
+}
+
+// Selection sort algorithm
+const selectionSorter = (mainArray, startIdx, endIdx, auxiliaryArray, animations) => {
+  let selectionArray;
+  for (let i = startIdx; i < endIdx; i++) {
+    let minIdx = i;
+    selectionArray = [];
+    for (let j = i + 1; j <= endIdx; j++) {
+      selectionArray.push(j);
+      if (auxiliaryArray[j] < auxiliaryArray[minIdx]) {
+        minIdx = j;
+      }
+    }
+
+    animations.push([i, selectionArray]);
+    animations.push([i, selectionArray]);
+    if (minIdx !== i) {
+      // animations.push([minIdx, i]);
+      // animations.push([minIdx, i]);
+      // animations.push([minIdx, auxiliaryArray[i]]);
+      // animations.push([i, auxiliaryArray[minIdx]]);
+
+      animations.push(["swap", [i, auxiliaryArray[minIdx]], [minIdx, auxiliaryArray[i]]]);
+      swap(mainArray, minIdx, i);
+      swap(auxiliaryArray, minIdx, i);
+    } else {
+      animations.push([""]);
+    }
+  }
+}
