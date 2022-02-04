@@ -33,3 +33,20 @@ export const setArrayColorChange = (arrayBars, selectionArrayIdxs, color, index,
     }
   }, index * animationSpeed);
 }
+
+// selectionArray has [[startIdx, color], ..., [endIdx, color]]
+export const setColorChangeV2 = (arrayBars, selectionArray, animationSpeed) => {
+  setTimeout(() => {
+    for (let i = 0; i < selectionArray.length; i++) {
+      arrayBars[selectionArray[i][0]].style.backgroundColor = selectionArray[i][1];
+    }
+  }, animationSpeed);
+}
+
+export const setHeightChangeV2 = (arrayBars, selectionArray, animationSpeed) => {
+  setTimeout(() => {
+    for (let i = 0; i < selectionArray.length; i++) {
+      arrayBars[selectionArray[i][0]].style.height = `${selectionArray[i][1]}px`;
+    }
+  }, animationSpeed);
+}
