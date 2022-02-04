@@ -1,5 +1,5 @@
 import { bubbleSortAnimation, insertionSortAnimation, mergeSortAnimation, selectionSortAnimation } from "../Algorithms/sortingAlgorithm";
-import { setColorChange, setColorChangeV2, setHeightChange, setHeightChangeV2 } from "../helperMethods";
+import { setColorChange, setHeightChange } from "../helperMethods";
 
 //  Animation function to handle animations in the sorting algorithm visualization tool.
 export const animationHandler = (array, algorithm, config) => {
@@ -34,11 +34,11 @@ const mergeSort = (array, config) => {
       let [barOneIdx, barTwoIdx] = animations[i];
       let color = i % 3 === 0 ? config.secondaryColor : config.primaryColor;
 
-      setColorChangeV2(arrayBars, [[barOneIdx, color], [barTwoIdx, color]], config.animationSpeed, i);
+      setColorChange(arrayBars, [[barOneIdx, color], [barTwoIdx, color]], config.animationSpeed, i);
     } else {
       let [barOneIdx, newHeight] = animations[i];
 
-      setHeightChangeV2(arrayBars, [[barOneIdx, newHeight]], config.animationSpeed, i);
+      setHeightChange(arrayBars, [[barOneIdx, newHeight]], config.animationSpeed, i);
     }
   }
 }
@@ -53,15 +53,15 @@ const bubbleSort = (array, config) => {
       let [barOneIdx, barTwoIdx] = animations[i];
       let color = i % 2 === 0 ? config.secondaryColor : config.primaryColor;
 
-      setColorChangeV2(arrayBars, [[barOneIdx, color], [barTwoIdx, color]], config.animationSpeed, i);
+      setColorChange(arrayBars, [[barOneIdx, color], [barTwoIdx, color]], config.animationSpeed, i);
     } else if (i % 4 === 1) {
       let [barOneIdx, newHeight] = animations[i];
 
-      setHeightChangeV2(arrayBars, [[barOneIdx, newHeight]], config.animationSpeed, i);
+      setHeightChange(arrayBars, [[barOneIdx, newHeight]], config.animationSpeed, i);
     } else if (i % 4 === 2) {
       let [barTwoIdx, newHeight] = animations[i];
 
-      setHeightChangeV2(arrayBars, [[barTwoIdx, newHeight]], config.animationSpeed, i);
+      setHeightChange(arrayBars, [[barTwoIdx, newHeight]], config.animationSpeed, i);
     }
   }
 }
@@ -76,15 +76,15 @@ const insertionSort = (array, config) => {
       let [barOneIdx, barTwoIdx] = animations[i];
       let color = i % 2 === 0 ? config.secondaryColor : config.primaryColor;
 
-      setColorChangeV2(arrayBars, [[barOneIdx, color], [barTwoIdx, color]], config.animationSpeed, i);
+      setColorChange(arrayBars, [[barOneIdx, color], [barTwoIdx, color]], config.animationSpeed, i);
     } else if (i % 4 === 2) {
       let [barOneIdx, newHeight] = animations[i];
 
-      setHeightChangeV2(arrayBars, [[barOneIdx, newHeight]], config.animationSpeed, i);
+      setHeightChange(arrayBars, [[barOneIdx, newHeight]], config.animationSpeed, i);
     } else if (i % 4 === 3) {
       let [barTwoIdx, newHeight] = animations[i];
 
-      setHeightChangeV2(arrayBars, [[barTwoIdx, newHeight]], config.animationSpeed, i);
+      setHeightChange(arrayBars, [[barTwoIdx, newHeight]], config.animationSpeed, i);
     }
   }
 }
@@ -98,15 +98,15 @@ const selectionSort = (array, config) => {
     if (i % 3 === 0) {
       let [barBoundIdx, selectionArrayIdxs] = animations[i];
 
-      setColorChangeV2(arrayBars, [[barBoundIdx, config.boundColor]].concat(selectionArrayIdxs.map(idx => [idx, config.secondaryColor])), config.animationSpeed, i);
+      setColorChange(arrayBars, [[barBoundIdx, config.boundColor]].concat(selectionArrayIdxs.map(idx => [idx, config.secondaryColor])), config.animationSpeed, i);
     } else if (i % 3 === 1) {
       let [barBoundIdx, selectionArrayIdxs] = animations[i];
 
-      setColorChangeV2(arrayBars, [[barBoundIdx, config.primaryColor]].concat(selectionArrayIdxs.map(idx => [idx, config.primaryColor])), config.animationSpeed, i);
+      setColorChange(arrayBars, [[barBoundIdx, config.primaryColor]].concat(selectionArrayIdxs.map(idx => [idx, config.primaryColor])), config.animationSpeed, i);
     } else {
       if (animations[i][0] == "swap") {
         let [_, barOne, barTwo] = animations[i];
-        setHeightChangeV2(arrayBars, [barOne, barTwo], config.animationSpeed, i);
+        setHeightChange(arrayBars, [barOne, barTwo], config.animationSpeed, i);
       }
     }
   }
