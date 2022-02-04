@@ -32,16 +32,13 @@ const mergeSort = (array, config) => {
     let isColorChange = i % 3 !== 2;
     if (isColorChange) {
       let [barOneIdx, barTwoIdx] = animations[i];
-      let barOneStyle = arrayBars[barOneIdx].style;
-      let barTwoStyle = arrayBars[barTwoIdx].style;
       let color = i % 3 === 0 ? config.secondaryColor : config.primaryColor;
 
-      setColorChange(barOneStyle, barTwoStyle, color, i, config);
+      setColorChangeV2(arrayBars, [[barOneIdx, color], [barTwoIdx, color]], config.animationSpeed, i);
     } else {
       let [barOneIdx, newHeight] = animations[i];
-      let barOneStyle = arrayBars[barOneIdx].style;
 
-      setHeightChange(barOneStyle, newHeight, i, config);
+      setHeightChangeV2(arrayBars, [[barOneIdx, newHeight]], config.animationSpeed, i);
     }
   }
 }
