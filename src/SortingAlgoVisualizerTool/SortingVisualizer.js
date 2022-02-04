@@ -24,7 +24,7 @@ const animateArray = (array, algorithm, config) => {
 export const SortingVisualizer = (props) => {
   const [array, setArray] = useState([]);
   const [sorting, setSorting] = useState(false);
-  const [arrayNum, setArrayNum] = useState(100);
+  const [arrayNum, setArrayNum] = useState(400);
 
   // Config data
   const [configData, setConfigData] = useState({

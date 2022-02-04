@@ -134,11 +134,6 @@ const selectionSorter = (mainArray, startIdx, endIdx, auxiliaryArray, animations
     animations.push([i, selectionArray]);
     animations.push([i, selectionArray]);
     if (minIdx !== i) {
-      // animations.push([minIdx, i]);
-      // animations.push([minIdx, i]);
-      // animations.push([minIdx, auxiliaryArray[i]]);
-      // animations.push([i, auxiliaryArray[minIdx]]);
-
       animations.push(["swap", [i, auxiliaryArray[minIdx]], [minIdx, auxiliaryArray[i]]]);
       swap(mainArray, minIdx, i);
       swap(auxiliaryArray, minIdx, i);
