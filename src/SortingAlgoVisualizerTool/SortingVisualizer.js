@@ -24,12 +24,13 @@ const animateArray = (array, algorithm, config) => {
 export const SortingVisualizer = (props) => {
   const [array, setArray] = useState([]);
   const [sorting, setSorting] = useState(false);
-  const [arrayNum, setArrayNum] = useState(20);
+  const [arrayNum, setArrayNum] = useState(100);
 
   // Config data
   const [configData, setConfigData] = useState({
     primaryColor: 'turquoise',
     secondaryColor: 'red',
+    boundColor: 'green',
     animationSpeed: 5
   });
 
@@ -71,8 +72,10 @@ export const SortingVisualizer = (props) => {
           <button className="insertion-sort" onClick={
             () => { animateArray(array, "insertionSort", configData); }
           }>Insertion Sort</button>
+          <button className="selection-sort" onClick={
+            () => { animateArray(array, "selectionSort", configData); }
+          }>Selection Sort</button>
         </div>
-
       </main>
     </>
   )
