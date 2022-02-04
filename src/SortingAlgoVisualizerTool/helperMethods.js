@@ -19,3 +19,17 @@ export const setHeightChange = (barStyle, height, index, config) => {
     barStyle.height = `${height}px`;
   }, index * config.animationSpeed);
 }
+
+export const setSingleColorChange = (barStyle, color, index, animationSpeed) => {
+  setTimeout(() => {
+    barStyle.backgroundColor = color;
+  }, index * animationSpeed);
+}
+
+export const setArrayColorChange = (arrayBars, selectionArrayIdxs, color, index, animationSpeed) => {
+  setTimeout(() => {
+    for (let i = 0; i < selectionArrayIdxs.length; i++) {
+      arrayBars[selectionArrayIdxs[i]].style.backgroundColor = color;
+    }
+  }, index * animationSpeed);
+}
