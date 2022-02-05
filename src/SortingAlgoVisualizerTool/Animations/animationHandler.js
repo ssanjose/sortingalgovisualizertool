@@ -1,4 +1,4 @@
-import { bubbleSortAnimation, insertionSortAnimation, mergeSortAnimation, selectionSortAnimation } from "../Algorithms/sortingAlgorithm";
+import { bubbleSortAnimation, insertionSortAnimation, mergeSortAnimation, quickSortAnimation, selectionSortAnimation } from "../Algorithms/sortingAlgorithm";
 import { setColorChange, setHeightChange } from "../helperMethods";
 
 //  Animation function to handle animations in the sorting algorithm visualization tool.
@@ -16,6 +16,9 @@ export const animationHandler = (array, algorithm, config) => {
       break;
     case 'mergeSort':
       mergeSort(array, config);
+      break;
+    case 'quickSort':
+      quickSort(array, config);
       break;
     default:
       break;
@@ -110,4 +113,30 @@ const selectionSort = (array, config) => {
       }
     }
   }
+}
+
+//  Quick sort function to call the quick sort animation function and handle animation.
+const quickSort = (array, config) => {
+  const animations = quickSortAnimation(array);
+  const arrayBars = document.getElementsByClassName('array-bar');
+  console.log(array);
+
+  for (let i = 0; i < animations.length; i++) {
+    if (animations[i][0] === "compare") {
+      let [_, barOneIdx, barTwoIdx] = animations[i];
+      let color = config.secondaryColor;
+
+      setColorChange(arrayBars, [[barOneIdx, color], [barTwoIdx, color]], config.animationSpeed, i);
+    } else if (animations[i][0] === "primary") {
+      let [_, barOneIdx, barTwoIdx] = animations[i];
+      let color = config.primaryColor;
+
+      setColorChange(arrayBars, [[barOneIdx, color], [barTwoIdx, color]], config.animationSpeed, i);
+    } else if (animations[i][0] === "swap") {
+      let [_, barOne, barTwo] = animations[i];
+      setHeightChange(arrayBars, [barOne, barTwo], config.animationSpeed, i);
+    }
+  }
+
+
 }
