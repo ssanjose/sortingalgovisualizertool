@@ -52,13 +52,12 @@ const createMergeSortAnimation = (mainArray, startIdx, middleIdx, endIdx, auxili
 export const bubbleSortAnimation = (array) => {
   const animations = [];
   if (array.length <= 1) return array;
-  const auxiliaryArray = array.slice();
-  bubbleSorter(array, 0, array.length - 1, auxiliaryArray, animations);
+  bubbleSorter(array, 0, array.length - 1, animations);
   return animations;
 }
 
 // Bubble sort algorithm
-const bubbleSorter = (mainArray, startIdx, endIdx, auxiliaryArray, animations) => {
+const bubbleSorter = (mainArray, startIdx, endIdx, animations) => {
   if (startIdx === endIdx) return;
   let swapped;
 
@@ -66,16 +65,15 @@ const bubbleSorter = (mainArray, startIdx, endIdx, auxiliaryArray, animations) =
     swapped = false;
     for (let i = startIdx; i < endIdx; i++) {
       animations.push([i, i + 1]);
-      if (auxiliaryArray[i] > auxiliaryArray[i + 1]) {
-        animations.push([i, auxiliaryArray[i + 1]]);
-        animations.push([i + 1, auxiliaryArray[i]]);
+      if (mainArray[i] > mainArray[i + 1]) {
+        animations.push([i, mainArray[i + 1]]);
+        animations.push([i + 1, mainArray[i]]);
         swap(mainArray, i, i + 1);
-        swap(auxiliaryArray, i, i + 1);
         swapped = true;
       }
       else {
-        animations.push([i, auxiliaryArray[i]]);
-        animations.push([i + 1, auxiliaryArray[i + 1]]);
+        animations.push([i, mainArray[i]]);
+        animations.push([i + 1, mainArray[i + 1]]);
       }
       animations.push([i, i + 1]);
     }
@@ -87,22 +85,20 @@ const bubbleSorter = (mainArray, startIdx, endIdx, auxiliaryArray, animations) =
 export const insertionSortAnimation = (array) => {
   const animations = [];
   if (array.length <= 1) return array;
-  const auxiliaryArray = array.slice();
-  insertionSorter(array, 0, array.length - 1, auxiliaryArray, animations);
+  insertionSorter(array, 0, array.length - 1, animations);
   return animations;
 }
 
 // Insertion sort algorithm
-const insertionSorter = (mainArray, startIdx, endIdx, auxiliaryArray, animations) => {
+const insertionSorter = (mainArray, startIdx, endIdx, animations) => {
   for (let i = startIdx + 1; i <= endIdx; i++) {
     let j = i;
-    while (j > startIdx && auxiliaryArray[j] < auxiliaryArray[j - 1]) {
+    while (j > startIdx && mainArray[j] < mainArray[j - 1]) {
       animations.push([j, j - 1]);
       animations.push([j, j - 1]);
-      animations.push([j, auxiliaryArray[j - 1]]);
-      animations.push([j - 1, auxiliaryArray[j]]);
+      animations.push([j, mainArray[j - 1]]);
+      animations.push([j - 1, mainArray[j]]);
       swap(mainArray, j, j - 1);
-      swap(auxiliaryArray, j, j - 1);
       j--;
     }
   }
@@ -113,20 +109,19 @@ const insertionSorter = (mainArray, startIdx, endIdx, auxiliaryArray, animations
 export const selectionSortAnimation = (array) => {
   const animations = [];
   if (array.length <= 1) return array;
-  const auxiliaryArray = array.slice();
-  selectionSorter(array, 0, array.length - 1, auxiliaryArray, animations);
+  selectionSorter(array, 0, array.length - 1, animations);
   return animations;
 }
 
 // Selection sort algorithm
-const selectionSorter = (mainArray, startIdx, endIdx, auxiliaryArray, animations) => {
+const selectionSorter = (mainArray, startIdx, endIdx, animations) => {
   let selectionArray;
   for (let i = startIdx; i < endIdx; i++) {
     let minIdx = i;
     selectionArray = [];
     for (let j = i + 1; j <= endIdx; j++) {
       selectionArray.push(j);
-      if (auxiliaryArray[j] < auxiliaryArray[minIdx]) {
+      if (mainArray[j] < mainArray[minIdx]) {
         minIdx = j;
       }
     }
@@ -134,9 +129,8 @@ const selectionSorter = (mainArray, startIdx, endIdx, auxiliaryArray, animations
     animations.push([i, selectionArray]);
     animations.push([i, selectionArray]);
     if (minIdx !== i) {
-      animations.push(["swap", [i, auxiliaryArray[minIdx]], [minIdx, auxiliaryArray[i]]]);
+      animations.push(["swap", [i, mainArray[minIdx]], [minIdx, mainArray[i]]]);
       swap(mainArray, minIdx, i);
-      swap(auxiliaryArray, minIdx, i);
     } else {
       animations.push([""]);
     }
