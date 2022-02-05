@@ -24,13 +24,15 @@ const animateArray = (array, algorithm, config) => {
 export const SortingVisualizer = (props) => {
   const [array, setArray] = useState([]);
   const [sorting, setSorting] = useState(false);
-  const [arrayNum, setArrayNum] = useState(400);
+  const [arrayNum, setArrayNum] = useState(50);
 
   // Config data
   const [configData, setConfigData] = useState({
     primaryColor: 'turquoise',
     secondaryColor: 'red',
-    boundColor: 'green',
+    boundColor: 'lime',
+    compareColor: 'yellow',
+    swapColor: 'slateblue',
     animationSpeed: 5
   });
 
@@ -75,6 +77,9 @@ export const SortingVisualizer = (props) => {
           <button className="selection-sort" onClick={
             () => { animateArray(array, "selectionSort", configData); }
           }>Selection Sort</button>
+          <button className="quick-sort" onClick={
+            () => { animateArray(array, "quickSort", configData); }
+          }>Quick Sort</button>
         </div>
       </main>
     </>
