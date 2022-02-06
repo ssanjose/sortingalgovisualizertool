@@ -1,5 +1,6 @@
+import { bubbleSortAnimation } from "../Algorithms/bubbleSort";
 import { mergeSortAnimation } from "../Algorithms/mergeSort";
-import { bubbleSortAnimation, insertionSortAnimation, quickSortAnimation, selectionSortAnimation } from "../Algorithms/sortingAlgorithm";
+import { insertionSortAnimation, quickSortAnimation, selectionSortAnimation } from "../Algorithms/sortingAlgorithm";
 import { setColorChange, setHeightChange } from "../helperMethods";
 
 //  Animation function to handle animations in the sorting algorithm visualization tool.
