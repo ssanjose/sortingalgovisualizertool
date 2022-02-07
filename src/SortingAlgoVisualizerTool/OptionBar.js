@@ -8,6 +8,7 @@ const sortingAlgorithms = ['bubbleSort', 'insertionSort', 'selectionSort', 'merg
 export const OptionBar = (props) => {
   const [sort, setSort] = useState('mergeSort');
 
+
   return (
     <header id='optionBar'>
       <nav>
@@ -15,6 +16,7 @@ export const OptionBar = (props) => {
           <li>
             <select id="sort-select" defaultValue={'mergeSort'} onChange={(e) => {
               setSort(e.target.value);
+              props.resetArray();
             }}>
               {sortingAlgorithms.map((algorithm) => (
                 <option key={algorithm} value={algorithm}>{algorithm}</option>
@@ -23,9 +25,9 @@ export const OptionBar = (props) => {
           </li>
           <li>
             <select
-              id="arrayNum"
+              id="array-num"
               value={props.arrayNum}
-              onChange={(e) => props.setArrayNum(e.target.value)}
+              onChange={(e) => { props.setArrayNum(e.target.value); }}
             >
               {arrayNumOptions.map((num) => (
                 <option key={num} value={num}>
