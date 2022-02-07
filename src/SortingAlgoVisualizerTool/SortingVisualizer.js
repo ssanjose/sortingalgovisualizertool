@@ -11,7 +11,7 @@ const randomIntFromInterval = (min, max) => {
 const resetArray = (arrayLength) => {
   const arr = [];
   for (let i = 0; i < arrayLength; i++) {
-    arr.push(randomIntFromInterval(5, 800));
+    arr.push(randomIntFromInterval(5, window.innerHeight - 5));
   }
   return arr;
 }
@@ -48,9 +48,13 @@ export const SortingVisualizer = (props) => {
   return (
     <>
       <OptionBar
+        array={array}
         arrayNum={arrayNum}
         setArrayNum={setArrayNum}
         resetArray={() => setArray(resetArray(arrayNum))}
+        animateArray={animateArray}
+        configData={configData}
+        setConfigData={setConfigData}
       />
       <main id="main-content">
         <div id="visualizer">
@@ -64,23 +68,6 @@ export const SortingVisualizer = (props) => {
               }}>
             </div>
           ))}
-        </div>
-        <div className='button'>
-          <button className="merge-sort" onClick={
-            () => { animateArray(array, "mergeSort", configData); }
-          }>Merge Sort</button>
-          <button className="bubble-sort" onClick={
-            () => { animateArray(array, "bubbleSort", configData); }
-          }>Bubble Sort</button>
-          <button className="insertion-sort" onClick={
-            () => { animateArray(array, "insertionSort", configData); }
-          }>Insertion Sort</button>
-          <button className="selection-sort" onClick={
-            () => { animateArray(array, "selectionSort", configData); }
-          }>Selection Sort</button>
-          <button className="quick-sort" onClick={
-            () => { animateArray(array, "quickSort", configData); }
-          }>Quick Sort</button>
         </div>
       </main>
     </>

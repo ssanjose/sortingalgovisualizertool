@@ -1,14 +1,23 @@
 #optionBar {
   position: absolute;
   top: 50vh;
-  right: 20px;
-  width: 10%;
-  height: 5vh;
+  right: 10px;
+  width: 15%;
+  min-width: 200px;
   display: flex;
   justify-content: space-around;
   align-items: center;
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.3);
+  padding: 10px;
+}
+
+.hidden {
+
+}
+
+.shown {
+  
 }
 
 #optionBar ul {
