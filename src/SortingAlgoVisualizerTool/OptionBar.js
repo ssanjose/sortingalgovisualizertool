@@ -3,7 +3,11 @@ import React, { useState } from 'react';
 // An array of numbers that setArrayNum can use to set the array length.
 const arrayNumOptions = [10, 50, 100, 200, 1000];
 // An array of sorting algorithms that can be used to sort the array.
-const sortingAlgorithms = ['bubbleSort', 'insertionSort', 'selectionSort', 'mergeSort', 'quickSort'];
+const sortingAlgorithms = [['mergeSort', 'Merge Sort'],
+['bubbleSort', 'Bubble Sort'],
+['insertionSort', 'Insertion Sort'],
+['selectionSort', 'Selection Sort'],
+['quickSort', 'Quick Sort']];
 
 export const OptionBar = (props) => {
   const [sort, setSort] = useState('mergeSort');
@@ -19,7 +23,7 @@ export const OptionBar = (props) => {
               props.resetArray();
             }}>
               {sortingAlgorithms.map((algorithm) => (
-                <option key={algorithm} value={algorithm}>{algorithm}</option>
+                <option key={algorithm} value={algorithm[0]}>{algorithm[1]}</option>
               ))}
             </select>
           </li>
