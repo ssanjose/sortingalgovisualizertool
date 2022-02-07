@@ -47,7 +47,11 @@ export const SortingVisualizer = (props) => {
 
   return (
     <>
-      <OptionBar />
+      <OptionBar
+        arrayNum={arrayNum}
+        setArrayNum={setArrayNum}
+        resetArray={() => setArray(resetArray(arrayNum))}
+      />
       <main id="main-content">
         <div id="visualizer">
           {array.map((value, index) => (
@@ -62,9 +66,6 @@ export const SortingVisualizer = (props) => {
           ))}
         </div>
         <div className='button'>
-          <button className="array-reset" onClick={
-            () => { setArray(resetArray(arrayNum)); }
-          }>Generate New Dataset</button>
           <button className="merge-sort" onClick={
             () => { animateArray(array, "mergeSort", configData); }
           }>Merge Sort</button>

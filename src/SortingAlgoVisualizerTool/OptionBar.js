@@ -2,12 +2,16 @@ import React from 'react';
 
 export const OptionBar = (props) => {
   return (
-    <>
-      <nav id='optionBar'>
+    <header id='optionBar'>
+      <nav>
         <ul id="options">
-          <li>Check</li>
+          <li>
+            <button className="array-reset" onClick={
+              () => { props.resetArray(); }
+            }>Generate New Dataset</button>
+          </li>
         </ul>
       </nav>
-    </>
+    </header>
   )
 }
