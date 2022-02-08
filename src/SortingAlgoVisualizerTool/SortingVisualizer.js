@@ -11,7 +11,7 @@ const randomIntFromInterval = (min, max) => {
 const resetArray = (arrayLength) => {
   const arr = [];
   for (let i = 0; i < arrayLength; i++) {
-    arr.push(randomIntFromInterval(5, window.innerHeight - 5));
+    arr.push(randomIntFromInterval(5, window.innerHeight - 50));
   }
   return arr;
 }

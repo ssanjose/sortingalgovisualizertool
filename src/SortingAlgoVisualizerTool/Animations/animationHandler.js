@@ -41,11 +41,11 @@ const mergeSort = (array, config) => {
       let [barOneIdx, barTwoIdx] = animations[i];
       let color = i % 3 === 0 ? config.secondaryColor : config.primaryColor;
 
-      setColorChange(arrayBars, [[barOneIdx, color], [barTwoIdx, color]], config.animationSpeed, i);
+      setColorChange(arrayBars, [[barOneIdx, color], [barTwoIdx, color]], config.animationSpeed - 3, i);
     } else {
       let [barOneIdx, newHeight] = animations[i];
 
-      setHeightChange(arrayBars, [[barOneIdx, newHeight]], config.animationSpeed, i);
+      setHeightChange(arrayBars, [[barOneIdx, newHeight]], config.animationSpeed - 3, i);
     }
   }
 }
