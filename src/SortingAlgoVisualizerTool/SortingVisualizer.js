@@ -17,8 +17,8 @@ const resetArray = (arrayLength) => {
 }
 
 // Animates the array by calling the animationHandler
-const animateArray = (array, algorithm, config) => {
-  animationHandler(array, algorithm, config);
+const animateArray = (array, algorithm, config, sorting, setSorting) => {
+  animationHandler(array, algorithm, config, sorting, setSorting);
 }
 
 export const SortingVisualizer = (props) => {

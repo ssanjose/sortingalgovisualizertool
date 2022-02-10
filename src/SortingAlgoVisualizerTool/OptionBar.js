@@ -10,20 +10,27 @@ const sortingAlgorithms = [['mergeSort', 'Merge Sort'],
 ['quickSort', 'Quick Sort']];
 
 // Check before animating the array.
-const checkArray = (animateArray, array, sortName, configData) => {
+const checkArray = (animateArray, array, sortName, configData, sorting, setSorting) => {
   // If sortName is not empty, then animate the array.
   if (sortName !== "_") {
-    animateArray(array, sortName, configData);
+    // setSorting(true);
+    animateArray(array, sortName, configData, sorting, setSorting);
   }
 };
 
 export const OptionBar = (props) => {
   const [sort, setSort] = useState('_');
+  const [sorting, setSorting] = useState(false);
 
   return (
-    <header id='optionBar'>
-      <nav className='shown'>
-        <ul id="options">
+    <header id='optionBar' className={sorting ? "exec" : "init"}>
+      <div id='title-bar'>
+        <h1>
+          Sorting Algorithm Visualizer
+        </h1>
+      </div>
+      <nav >
+        <ul id="options" className={sorting ? "hidden" : "shown"}>
           <li>
             <select id="sort-select" className='form-select form-select-lg mb-3' onChange={(e) => {
               setSort(e.target.value);
@@ -59,7 +66,7 @@ export const OptionBar = (props) => {
           <li>
             <div>
               <button type="button" className="animate btn btn-lg btn-dark" onClick={
-                () => { checkArray(props.animateArray, props.array, sort, props.configData); }
+                () => { checkArray(props.animateArray, props.array, sort, props.configData, sorting, setSorting); }
               }>Animate Algorithm</button>
             </div>
           </li>

@@ -6,23 +6,25 @@ import { quickSortAnimation } from "../Algorithms/quickSort";
 import { setColorChange, setHeightChange } from "../helperMethods";
 
 //  Animation function to handle animations in the sorting algorithm visualization tool.
-export const animationHandler = (array, algorithm, config) => {
+export const animationHandler = (array, algorithm, config, sorting, setSorting) => {
   let animations = [];
+  setSorting(true);
+
   switch (algorithm) {
     case 'bubbleSort':
-      bubbleSort(array, config);
+      bubbleSort(array, config, setSorting);
       break;
     case 'insertionSort':
-      insertionSort(array, config);
+      insertionSort(array, config, setSorting);
       break;
     case 'selectionSort':
-      selectionSort(array, config);
+      selectionSort(array, config, setSorting);
       break;
     case 'mergeSort':
-      mergeSort(array, config);
+      mergeSort(array, config, setSorting);
       break;
     case 'quickSort':
-      quickSort(array, config);
+      quickSort(array, config, setSorting);
       break;
     default:
       break;
@@ -31,7 +33,7 @@ export const animationHandler = (array, algorithm, config) => {
 }
 
 //  Merge sort function to call the merge sort animation function and handle animation.
-const mergeSort = (array, config) => {
+const mergeSort = (array, config, setSorting) => {
   const animations = mergeSortAnimation(array);
   const arrayBars = document.getElementsByClassName('array-bar');
 
@@ -47,11 +49,18 @@ const mergeSort = (array, config) => {
 
       setHeightChange(arrayBars, [[barOneIdx, newHeight]], config.animationSpeed - 3, i);
     }
+
+    if (i === animations.length - 1) {
+      // set timeout to toggle setSorting to opposite of sorting to know when the array is sorted.
+      setTimeout(() => {
+        setSorting(false);
+      }, ((config.animationSpeed - 3) * i));
+    }
   }
 }
 
 //  Bubble sort function to call the bubble sort animation function and handle animation.
-const bubbleSort = (array, config) => {
+const bubbleSort = (array, config, setSorting) => {
   const animations = bubbleSortAnimation(array);
   const arrayBars = document.getElementsByClassName('array-bar');
 
@@ -74,7 +83,7 @@ const bubbleSort = (array, config) => {
 }
 
 //  Insertion sort function to call the insertion sort animation function and handle animation.
-const insertionSort = (array, config) => {
+const insertionSort = (array, config, setSorting) => {
   const animations = insertionSortAnimation(array);
   const arrayBars = document.getElementsByClassName('array-bar');
 
@@ -97,7 +106,7 @@ const insertionSort = (array, config) => {
 }
 
 //  Selection sort function to call the selection sort animation function and handle animation.
-const selectionSort = (array, config) => {
+const selectionSort = (array, config, setSorting) => {
   const animations = selectionSortAnimation(array);
   const arrayBars = document.getElementsByClassName('array-bar');
 
@@ -111,7 +120,7 @@ const selectionSort = (array, config) => {
 
       setColorChange(arrayBars, [[barBoundIdx, config.primaryColor]].concat(selectionArrayIdxs.map(idx => [idx, config.primaryColor])), config.animationSpeed, i);
     } else {
-      if (animations[i][0] == "swap") {
+      if (animations[i][0] === "swap") {
         let [_, barOne, barTwo] = animations[i];
         setHeightChange(arrayBars, [barOne, barTwo], config.animationSpeed, i);
       }
@@ -120,7 +129,7 @@ const selectionSort = (array, config) => {
 }
 
 //  Quick sort function to call the quick sort animation function and handle animation.
-const quickSort = (array, config) => {
+const quickSort = (array, config, setSorting) => {
   const animations = quickSortAnimation(array);
   const arrayBars = document.getElementsByClassName('array-bar');
   console.log(array);
