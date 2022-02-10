@@ -79,6 +79,13 @@ const bubbleSort = (array, config, setSorting) => {
 
       setHeightChange(arrayBars, [[barTwoIdx, newHeight]], config.animationSpeed, i);
     }
+
+    if (i === animations.length - 1) {
+      // set timeout to toggle setSorting to opposite of sorting to know when the array is sorted.
+      setTimeout(() => {
+        setSorting(false);
+      }, ((config.animationSpeed - 3) * i));
+    }
   }
 }
 
@@ -102,6 +109,13 @@ const insertionSort = (array, config, setSorting) => {
 
       setHeightChange(arrayBars, [[barTwoIdx, newHeight]], config.animationSpeed, i);
     }
+
+    if (i === animations.length - 1) {
+      // set timeout to toggle setSorting to opposite of sorting to know when the array is sorted.
+      setTimeout(() => {
+        setSorting(false);
+      }, ((config.animationSpeed - 3) * i));
+    }
   }
 }
 
@@ -124,6 +138,13 @@ const selectionSort = (array, config, setSorting) => {
         let [_, barOne, barTwo] = animations[i];
         setHeightChange(arrayBars, [barOne, barTwo], config.animationSpeed, i);
       }
+    }
+
+    if (i === animations.length - 1) {
+      // set timeout to toggle setSorting to opposite of sorting to know when the array is sorted.
+      setTimeout(() => {
+        setSorting(false);
+      }, ((config.animationSpeed - 3) * i));
     }
   }
 }
@@ -149,7 +170,12 @@ const quickSort = (array, config, setSorting) => {
       let [_, barOne, barTwo] = animations[i];
       setHeightChange(arrayBars, [barOne, barTwo], config.animationSpeed, i);
     }
+
+    if (i === animations.length - 1) {
+      // set timeout to toggle setSorting to opposite of sorting to know when the array is sorted.
+      setTimeout(() => {
+        setSorting(false);
+      }, ((config.animationSpeed - 3) * i));
+    }
   }
-
-
 }
