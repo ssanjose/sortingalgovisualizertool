@@ -2,7 +2,7 @@
 
 This project was inspired by Clément Mihailescu.
 
-I created this project to challenge myself with visualization techniques and sorting algorithms.
+I created this project to challenge myself with visualization techniques and sorting algorithms. You can see the whole project at https://ssanjose.github.io/sortingalgovisualizertool/
 
 ## Algorithms include
 
